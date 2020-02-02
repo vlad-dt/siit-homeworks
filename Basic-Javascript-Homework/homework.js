@@ -27,6 +27,7 @@ let i;
 for (i = 0; i < sumNumbers.length; i++){
     sumAnswer = sumAnswer + sumNumbers[i];
 }
+
 console.log(sumAnswer);
 
 
@@ -44,6 +45,7 @@ for (i = 0; i < arrNumbers.length; i++){
 		max = arrNumbers[i];
 	}
 }
+
 console.log(max);
 
 
@@ -63,4 +65,5 @@ for (i = 0; i < arrNumbers.length; i++){
 		xTimes = xTimes + 1;
 	}
 }
+
 console.log(xTimes);
