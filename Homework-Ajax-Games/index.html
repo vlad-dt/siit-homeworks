@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects</title>
+
+    <script src="main.js" defer></script>
+</head>
+<body onload="GetAll()">
+    <form id="gameForm" method="POST" action="">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br>
+
+        <label for="image">Image:</label><br>
+        <input type="text" id="image" name="image"><br>
+
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
+
+        <input type="hidden" id="gameId" name="gameId" value="undefined">
+
+        <input type="submit" id="submitBtn" value="Submit"><br><br>
+      </form> 
+</body>
+</html>
