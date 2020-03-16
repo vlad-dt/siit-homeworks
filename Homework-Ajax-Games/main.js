@@ -1,16 +1,21 @@
-const gameForm = document.getElementById('gameForm');
+ var gameForm = document.getElementById('gameForm');
 gameForm.addEventListener('submit', ProcessForm);
 
 function ProcessForm() {
-    const gameId = document.getElementById("gameForm").elements["gameId"].value;
-    const title = document.getElementById("gameForm").elements["title"].value;
-    const image = document.getElementById("gameForm").elements["image"].value;
-    const description = document.getElementById("gameForm").elements["description"].value;
+    let gameId = document.getElementById("gameForm").elements["gameId"].value;
+    let title = document.getElementById("gameForm").elements["title"].value;
+    let image = document.getElementById("gameForm").elements["image"].value;
+    let description = document.getElementById("gameForm").elements["description"].value;
+ 
 
     if(gameId == "undefined") {
         AddNew(title, image, description);
     }
     else {
+        console.log(gameId);
+        console.log(title);
+        console.log(image);
+        console.log(description);
         Edit(gameId, title, image, description);
     }   
 }
@@ -19,22 +24,22 @@ function GetAll() {
     fetch('https://games-world.herokuapp.com/games').then(res => res.json()).then(data => {
         const fragment = document.createDocumentFragment();
     
-        for(const game of data) {
+        for(let game of data) {
     
-            const a = document.createElement('a');
+            let a = document.createElement('a');
             a.href = 'https://games-world.herokuapp.com/games/' + game._id;
             a.innerHTML = game.title;
             
-            const description = document.createElement('p');
+            let description = document.createElement('p');
             description.innerHTML = game.description;
             
-            const imageUrl = document.createElement('img');
+            let imageUrl = document.createElement('img');
             imageUrl.src = game.imageUrl;
 
-            const deleteBtn = document.createElement('button');
+            let deleteBtn = document.createElement('button');
             deleteBtn.textContent = "Delete game";
     
-            const editBtn = document.createElement('button');
+            let editBtn = document.createElement('button');
             editBtn.textContent = "Edit game";
     
             a.addEventListener('click', (e) => {
@@ -47,10 +52,12 @@ function GetAll() {
             });
 
             editBtn.addEventListener('click', (e) => {
-                const gameForm = document.getElementById("gameForm");
+                let gameForm = document.getElementById("gameForm");
                 gameForm.scrollIntoView();
 
                 FillData(game._id, game.title, game.imageUrl, game.description);
+                let hiddenid = document.getElementById("gameId");
+                console.log(hiddenid);
                 e.preventDefault();
             });
     
@@ -89,6 +96,7 @@ function Delete(gameId) {
 
 function Edit(gameId, gameTitle, gameImage, gameDescription) { 
     const data = {title: gameTitle, description: gameDescription, imageUrl: gameImage};
+    console.log(data);
 
     fetch('https://games-world.herokuapp.com/games/' + gameId, {
         method: 'PUT',
@@ -98,6 +106,7 @@ function Edit(gameId, gameTitle, gameImage, gameDescription) {
         body: new URLSearchParams(data)
     }).then(res => {
         res.json();
+        console.log(res.json());
         RefreshPage();
     });
 }

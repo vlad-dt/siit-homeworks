@@ -8,7 +8,8 @@
     <script src="main.js" defer></script>
 </head>
 <body onload="GetAll()">
-    <form id="gameForm" method="POST" action="">
+    <iframe name="my_iframe" style="display: none"></iframe>
+    <form id="gameForm" method="POST" target="my_iframe">
         <label for="title">Title:</label><br>
         <input type="text" id="title" name="title"><br>
 
